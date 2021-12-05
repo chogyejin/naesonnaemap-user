@@ -1,7 +1,9 @@
+import { FooterDiv } from '../styles/style';
+
 export default function Footer() {
   return (
     <div>
-      <div>푸터</div>
+      <FooterDiv>푸터</FooterDiv>
     </div>
   );
 }

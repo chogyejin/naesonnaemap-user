@@ -6,31 +6,41 @@ export const globalStyles = (
     styles={css`
       html,
       body {
-        padding: 3rem 1rem;
         margin: 0;
         background: papayawhip;
-        min-height: 100%;
-        font-family: Helvetica, Arial, sans-serif;
+        min-height: 100vh;
         font-size: 24px;
       }
     `}
   />
 );
 
-export const basicStyles = css`
+export const navbarStyles = css`
   background-color: white;
-  color: cornflowerblue;
-  border: 1px solid lightgreen;
-  border-right: none;
-  border-bottom: none;
-  box-shadow: 5px 5px 0 0 lightgreen, 10px 10px 0 0 lightyellow;
-  transition: all 0.1s linear;
-  margin: 3rem 0;
-  padding: 1rem 0.5rem;
+  text-align: center;
 `;
 
-export const Basic = styled.div`
-  ${basicStyles};
+export const NavbarDiv = styled.div`
+  ${navbarStyles};
+`;
+
+export const footerStyles = css`
+  background-color: white;
+  text-align: center;
+  margin-top: auto;
+`;
+
+export const FooterDiv = styled.div`
+  ${footerStyles};
+`;
+
+export const ContainerStyles = css`
+  min-height: 100vh;
+  width: 100%;
+`;
+
+export const ContainerDiv = styled.div`
+  ${ContainerStyles};
 `;
 
 // export const hoverStyles = css`
