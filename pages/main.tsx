@@ -2,24 +2,52 @@ import { useRef, useEffect, useState } from 'react';
 import KakaomapComponent from '../components/KaKaoMap';
 import SearchBar from '../components/KaKaoMap/SearchBar';
 
+interface ILocation {
+  myLat: number;
+  myLng: number;
+}
+
 export default function Map() {
   const kakaoMap = useRef(null);
-  let myLat = 37.574515; //위도
-  let myLng = 126.97693; //경도
   const [keyword, setKeyword] = useState<string>('');
+  const [myLocation, setMyLocation] = useState<ILocation>({
+    myLat: 37.574515,
+    myLng: 126.97693,
+  });
+  function getKeyword(searchKeyword: string) {
+    setKeyword(searchKeyword);
+  }
 
   useEffect(() => {
-    console.log(keyword);
-  }, [keyword]);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setMyLocation({
+            myLat: position.coords.latitude,
+            myLng: position.coords.longitude,
+          });
+        },
+        //지원 안 되면 광화문
+        () => {
+          setMyLocation({
+            myLat: 37.574515,
+            myLng: 126.97693,
+          });
+        },
+      );
+    }
+  }, []);
 
-  function createMap() {
-    const coords = new (window as any).daum.maps.LatLng(myLat, myLng);
+  useEffect(() => {
+    const kakao = (window as any).daum;
+    const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    const coords = new kakao.maps.LatLng(myLocation.myLat, myLocation.myLng);
     const options = {
       center: coords,
       level: 9,
     };
-    const map = new (window as any).daum.maps.Map(kakaoMap.current, options);
-    const marker = new (window as any).daum.maps.Marker({
+    const map = new kakao.maps.Map(kakaoMap.current, options);
+    const marker = new kakao.maps.Marker({
       position: coords,
       map,
     });
@@ -27,37 +55,9 @@ export default function Map() {
     map.relayout();
 
     // 확대 축소 줌 컨트롤
-    const zoomControl = new (window as any).daum.maps.ZoomControl();
-    map.addControl(
-      zoomControl,
-      (window as any).daum.maps.ControlPosition.RIGHT,
-    );
-  }
-
-  function getKeyword(searchKeyword: string) {
-    setKeyword(searchKeyword);
-  }
-
-  useEffect(() => {
-    if (kakaoMap && kakaoMap.current) {
-      const ps = new (window as any).daum.maps.services.Places();
-      console.log(ps);
-      //GPS 지원되면
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            myLat = position.coords.latitude;
-            myLng = position.coords.longitude;
-            createMap();
-          },
-          //지원 안 되면 광화문
-          () => {
-            createMap();
-          },
-        );
-      }
-    }
-  }, [kakaoMap]);
+    const zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+  }, [kakaoMap && myLocation]);
   return (
     <>
       <SearchBar getKeyword={getKeyword} />
