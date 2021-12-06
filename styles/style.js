@@ -11,6 +11,14 @@ export const globalStyles = (
         min-height: 100vh;
         font-size: 24px;
       }
+      ,
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      a:hover {
+        opacity: 0.6;
+      }
     `}
   />
 );
@@ -35,6 +43,8 @@ export const FooterDiv = styled.div`
 `;
 
 export const ContainerStyles = css`
+  margin-top: 30px;
+  text-align: -webkit-center;
   min-height: 100vh;
   width: 100%;
 `;
