@@ -7,6 +7,21 @@ interface ILocation {
   myLng: number;
 }
 
+interface IPlace {
+  address_name: string;
+  category_group_code: string;
+  category_group_name: string;
+  category_name: string;
+  distance: string;
+  id: string;
+  phone: string;
+  place_name: string;
+  place_url: string;
+  road_address_name: string;
+  x: number;
+  y: number;
+}
+
 export default function Map() {
   const kakaoMap = useRef(null);
   const [keyword, setKeyword] = useState<string>('');
@@ -14,7 +29,6 @@ export default function Map() {
     myLat: 37.574515,
     myLng: 126.97693,
   });
-
   function getKeyword(searchKeyword: string) {
     setKeyword(searchKeyword);
   }
@@ -39,6 +53,7 @@ export default function Map() {
     }
   }, []);
 
+  //처음 렌더링 되는 지도
   useEffect(() => {
     const { kakao } = window as any;
     const coords = new kakao.maps.LatLng(myLocation.myLat, myLocation.myLng);
@@ -71,6 +86,7 @@ export default function Map() {
     infowindow.open(map, marker);
   }, [kakaoMap && myLocation]);
 
+  // keyword로 검색 시 생기는 지도
   useEffect(() => {
     const { kakao } = window as any;
     const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -98,32 +114,52 @@ export default function Map() {
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
+      } else {
+        alert('다시 검색하세요');
+        setKeyword('');
+        return;
       }
     }
 
-    // 지도에 마커를 표시하는 함수입니다
-    function displayMarker(place: { y: any; x: any; place_name: string }) {
-      // 마커를 생성하고 지도에 표시합니다
-      var marker = new kakao.maps.Marker({
+    // 지도에 마커를 표시하는 함수
+    function displayMarker(place: IPlace) {
+      // 마커를 생성하고 지도에 표시
+      const marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
 
-      // 마커에 클릭이벤트를 등록합니다
+      function onClickButton() {
+        alert('aaa');
+      }
+
+      // 마커에 클릭이벤트를 등록
       kakao.maps.event.addListener(marker, 'click', function () {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출
         infowindow.setContent(
-          '<div style="padding:5px;font-size:12px;">' +
-            place.place_name +
-            '</div>',
+          `<div style="padding:5px;font-size:12px;">
+            <div style="display:flex;">
+              <div>${place.place_name}</div>
+              <button onClick={alert("1231231");}>추가</button>
+            </div>
+            <div>
+              <div>
+                ${place.road_address_name}
+              </div>
+              <div>
+                ${place.address_name}
+              </div>
+              <div>
+                ${place.phone}
+              </div>
+            </div>
+          </div>`,
         );
         infowindow.open(map, marker);
       });
     }
 
     if (keyword) {
-      console.log('12312');
-
       // 장소 검색 객체를 생성합니다
       const ps = new kakao.maps.services.Places();
       // 키워드로 장소를 검색합니다
@@ -134,7 +170,7 @@ export default function Map() {
   return (
     <>
       <SearchBar getKeyword={getKeyword} />
-      <div>{keyword}</div>
+      {keyword && <div>{keyword}</div>}
       <KakaomapComponent ref={kakaoMap} />
     </>
   );
