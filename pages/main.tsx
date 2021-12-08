@@ -14,6 +14,7 @@ export default function Map() {
     myLat: 37.574515,
     myLng: 126.97693,
   });
+
   function getKeyword(searchKeyword: string) {
     setKeyword(searchKeyword);
   }
@@ -40,7 +41,6 @@ export default function Map() {
 
   useEffect(() => {
     const kakao = (window as any).daum;
-    const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
     const coords = new kakao.maps.LatLng(myLocation.myLat, myLocation.myLng);
     const options = {
       center: coords,
@@ -57,7 +57,20 @@ export default function Map() {
     // 확대 축소 줌 컨트롤
     const zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    const iwContent = '현 위치', // 인포윈도우에 표시할 내용
+      iwRemoveable = true;
+
+    // 인포윈도우를 생성
+    const infowindow = new kakao.maps.InfoWindow({
+      content: iwContent,
+      removable: iwRemoveable,
+    });
+
+    // 인포윈도우를 마커위에 표시
+    infowindow.open(map, marker);
   }, [kakaoMap && myLocation]);
+
   return (
     <>
       <SearchBar getKeyword={getKeyword} />
