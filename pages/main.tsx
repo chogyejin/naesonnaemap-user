@@ -40,7 +40,7 @@ export default function Map() {
   }, []);
 
   useEffect(() => {
-    const kakao = (window as any).daum;
+    const { kakao } = window as any;
     const coords = new kakao.maps.LatLng(myLocation.myLat, myLocation.myLng);
     const options = {
       center: coords,
@@ -70,6 +70,66 @@ export default function Map() {
     // 인포윈도우를 마커위에 표시
     infowindow.open(map, marker);
   }, [kakaoMap && myLocation]);
+
+  useEffect(() => {
+    const { kakao } = window as any;
+    const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    const coords = new kakao.maps.LatLng(myLocation.myLat, myLocation.myLng);
+    const options = {
+      center: coords,
+      level: 9,
+    };
+    const map = new kakao.maps.Map(kakaoMap.current, options);
+
+    function placesSearchCB(
+      data: string | any[],
+      status: any,
+      pagination: any,
+    ) {
+      if (status === kakao.maps.services.Status.OK) {
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        const bounds = new kakao.maps.LatLngBounds();
+
+        for (let i = 0; i < data.length; i++) {
+          displayMarker(data[i]);
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        }
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+      }
+    }
+
+    // 지도에 마커를 표시하는 함수입니다
+    function displayMarker(place: { y: any; x: any; place_name: string }) {
+      // 마커를 생성하고 지도에 표시합니다
+      var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x),
+      });
+
+      // 마커에 클릭이벤트를 등록합니다
+      kakao.maps.event.addListener(marker, 'click', function () {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent(
+          '<div style="padding:5px;font-size:12px;">' +
+            place.place_name +
+            '</div>',
+        );
+        infowindow.open(map, marker);
+      });
+    }
+
+    if (keyword) {
+      console.log('12312');
+
+      // 장소 검색 객체를 생성합니다
+      const ps = new kakao.maps.services.Places();
+      // 키워드로 장소를 검색합니다
+      ps.keywordSearch(keyword, placesSearchCB);
+    }
+  }, [keyword]);
 
   return (
     <>
