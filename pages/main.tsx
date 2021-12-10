@@ -22,7 +22,7 @@ interface IPlace {
   y: number;
 }
 
-export default function Map() {
+export default function Main() {
   const kakaoMap = useRef(null);
   const [keyword, setKeyword] = useState<string>('');
   const [myLocation, setMyLocation] = useState<ILocation>({
