@@ -1,25 +1,12 @@
 import { useRef, useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import KakaomapComponent from '../components/KaKaoMap';
 import SearchBar from '../components/KaKaoMap/SearchBar';
+import { IPlace, placesState } from '../recoil/states';
 
 interface ILocation {
   myLat: number;
   myLng: number;
-}
-
-interface IPlace {
-  address_name: string;
-  category_group_code: string;
-  category_group_name: string;
-  category_name: string;
-  distance: string;
-  id: string;
-  phone: string;
-  place_name: string;
-  place_url: string;
-  road_address_name: string;
-  x: number;
-  y: number;
 }
 
 export default function Main() {
@@ -29,6 +16,8 @@ export default function Main() {
     myLat: 37.574515,
     myLng: 126.97693,
   });
+  const [places, setPlaces] = useRecoilState<IPlace[]>(placesState);
+
   function getKeyword(searchKeyword: string) {
     setKeyword(searchKeyword);
   }
@@ -97,11 +86,9 @@ export default function Main() {
     };
     const map = new kakao.maps.Map(kakaoMap.current, options);
 
-    function placesSearchCB(
-      data: string | any[],
-      status: any,
-      pagination: any,
-    ) {
+    function placesSearchCB(data: IPlace[], status: any, pagination: any) {
+      setPlaces(data);
+
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -128,10 +115,6 @@ export default function Main() {
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
-
-      function onClickButton() {
-        alert('aaa');
-      }
 
       // 마커에 클릭이벤트를 등록
       kakao.maps.event.addListener(marker, 'click', function () {
@@ -167,6 +150,11 @@ export default function Main() {
     }
   }, [keyword]);
 
+  useEffect(() => {
+    if (places.length !== 0) {
+      console.log(places);
+    }
+  }, [places]);
   return (
     <>
       <SearchBar getKeyword={getKeyword} />

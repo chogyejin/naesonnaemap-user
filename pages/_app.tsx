@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Layout from '../components/Layout';
 import { globalStyles } from '../styles/style.js';
 import Head from 'next/head';
+import { RecoilRoot } from 'recoil';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {globalStyles}
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
     </Layout>
   );
 }
