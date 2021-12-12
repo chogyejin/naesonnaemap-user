@@ -62,6 +62,20 @@
       "road_address_name": "경기 광주시 파발로 207-7",
       "x": "127.248678881573",
       "y": "37.416573892648"
+    },
+    {
+      "address_name": "서울 용산구 한강로1가 252-1",
+      "category_group_code": "FD6",
+      "category_group_name": "음식점",
+      "category_name": "음식점 > 한식 > 육류,고기 > 갈비",
+      "distance": "",
+      "id": "220597413",
+      "phone": "02-794-8592",
+      "place_name": "몽탄",
+      "place_url": "http://place.map.kakao.com/220597413",
+      "road_address_name": "서울 용산구 백범로99길 50",
+      "x": "126.972243524719",
+      "y": "37.5359961162675"
     }
   ]
 }

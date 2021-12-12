@@ -4,7 +4,12 @@ import Link from 'next/link';
 const Home: NextPage = () => {
   return (
     <div>
-      <Link href="/main">시작하기</Link>
+      <div>
+        <Link href="/main">시작하기</Link>
+      </div>
+      <div>
+        <Link href="/myPage">내 페이지</Link>
+      </div>
     </div>
   );
 };
