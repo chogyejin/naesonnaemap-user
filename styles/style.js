@@ -33,9 +33,12 @@ export const NavbarDiv = styled.div`
 `;
 
 export const footerStyles = css`
+  width: 100%;
   background-color: white;
   text-align: center;
-  margin-top: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 `;
 
 export const FooterDiv = styled.div`
