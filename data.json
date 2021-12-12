@@ -14,6 +14,54 @@
       "id": 3,
       "title": "redux-saga도 사용해봅시다",
       "body": "나중엔 redux-saga를 사용해서 비동기 작업을 처리하는 방법도 배워볼 거예요."
+    },
+    {
+      "id": 4,
+      "title": "adfda"
+    }
+  ],
+  "places": [
+    {
+      "address_name": "제주특별자치도 제주시 오등동 산 182",
+      "category_group_code": "AT4",
+      "category_group_name": "관광명소",
+      "category_name": "여행 > 관광,명소 > 섬",
+      "distance": "",
+      "id": "18514310",
+      "phone": "",
+      "place_name": "제주도",
+      "place_url": "http://place.map.kakao.com/18514310",
+      "road_address_name": "",
+      "x": "126.54587355630036",
+      "y": "33.379777816446165"
+    },
+    {
+      "address_name": "제주특별자치도 서귀포시 대정읍 상모리",
+      "category_group_code": "AT4",
+      "category_group_name": "관광명소",
+      "category_name": "여행 > 관광,명소 > 도보여행 > 올레길 > 제주올레길",
+      "distance": "",
+      "id": "12753435",
+      "phone": "",
+      "place_name": "올레길 10코스(화순-모슬포 올레)",
+      "place_url": "http://place.map.kakao.com/12753435",
+      "road_address_name": "",
+      "x": "126.29320987840607",
+      "y": "33.216890444802004"
+    },
+    {
+      "address_name": "경기 광주시 탄벌동 39-3",
+      "category_group_code": "CE7",
+      "category_group_name": "카페",
+      "category_name": "음식점 > 카페 > 테마카페 > 디저트카페",
+      "distance": "",
+      "id": "1566412143",
+      "phone": "",
+      "place_name": "머메이드 레시피",
+      "place_url": "http://place.map.kakao.com/1566412143",
+      "road_address_name": "경기 광주시 파발로 207-7",
+      "x": "127.248678881573",
+      "y": "37.416573892648"
     }
   ]
 }

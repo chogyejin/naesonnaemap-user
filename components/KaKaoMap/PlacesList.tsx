@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { IPlace, placesState } from '../../recoil/states';
@@ -5,9 +6,16 @@ import { IPlace, placesState } from '../../recoil/states';
 export default function PlacesList() {
   const places = useRecoilValue<IPlace[]>(placesState);
 
-  function onAdd() {
+  async function onAdd(place: IPlace) {
+    const result = await axios.post('http://localhost:4000/places', place);
+
+    if (result) {
+      console.log(result.data);
+    }
+
     alert('추가되었습니다.');
   }
+
   return (
     <div>
       <div
@@ -22,7 +30,7 @@ export default function PlacesList() {
           float: 'left',
         }}>
         <div style={{ borderBottom: 'solid 2px' }}>검색목록</div>
-        <div style={{ fontSize: '12px' }}>
+        <div style={{ fontSize: '10px' }}>
           {places.map((place, key) => (
             <div
               style={{
@@ -30,21 +38,27 @@ export default function PlacesList() {
                 justifyContent: 'space-between',
                 borderBottom: 'solid 1px',
                 height: '32px',
-              }}>
+              }}
+              key={key}>
               <div
                 style={{
                   paddingBottom: '10px',
                   paddingTop: '5px',
-                }}
-                key={key}>
+                }}>
                 {place.place_name.length > 10 ? (
-                  <div>{place.place_name.slice(0, 13)}...</div>
+                  <div>
+                    <div>{place.place_name.slice(0, 13)}...</div>
+                    <div>{place.address_name.slice(0, 13)}</div>
+                  </div>
                 ) : (
-                  <div>{place.place_name}</div>
+                  <div>
+                    <div>{place.place_name}</div>
+                    <div>{place.address_name}</div>
+                  </div>
                 )}
               </div>
               <div>
-                <button onClick={onAdd}>버튼</button>
+                <button onClick={() => onAdd(place)}>버튼</button>
               </div>
             </div>
           ))}
