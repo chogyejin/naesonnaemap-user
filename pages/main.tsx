@@ -58,10 +58,6 @@ export default function Main() {
     // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출
     map.relayout();
 
-    // 확대 축소 줌 컨트롤
-    const zoomControl = new kakao.maps.ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
     const iwContent = '현 위치', // 인포윈도우에 표시할 내용
       iwRemoveable = true;
 
