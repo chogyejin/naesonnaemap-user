@@ -31,7 +31,7 @@ export default function MyPage({ myPlaces }: MyPageProps) {
           `<div style="padding:5px;font-size:12px;">
             <div style="display:flex;">
               <div>${place.place_name}</div>
-              <button onClick={alert("1231231");}>추가</button>
+              <button>추가</button>
             </div>
             <div>
               <div>
