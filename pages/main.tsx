@@ -82,6 +82,12 @@ export default function Main() {
     };
     const map = new kakao.maps.Map(kakaoMap.current, options);
 
+    //맵 클릭하면 인포윈도우 닫기
+    kakao.maps.event.addListener(map, 'click', function () {
+      console.log('맵클릭');
+      infowindow.close();
+    });
+
     function placesSearchCB(data: IPlace[], status: any, pagination: any) {
       setPlaces(data);
 
