@@ -58,7 +58,7 @@ export default function PlacesList() {
                 )}
               </div>
               <div>
-                <button onClick={() => onAdd(place)}>버튼</button>
+                <button onClick={() => onAdd(place)}>추가</button>
               </div>
             </div>
           ))}

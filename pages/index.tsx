@@ -5,10 +5,10 @@ const Home: NextPage = () => {
   return (
     <div>
       <div>
-        <Link href="/main">시작하기</Link>
+        <Link href="/main">장소 찾고 등록하기</Link>
       </div>
       <div>
-        <Link href="/myPage">내 페이지</Link>
+        <Link href="/myPage">등록한 장소 보기</Link>
       </div>
     </div>
   );
