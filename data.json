@@ -22,34 +22,6 @@
   ],
   "places": [
     {
-      "address_name": "제주특별자치도 제주시 오등동 산 182",
-      "category_group_code": "AT4",
-      "category_group_name": "관광명소",
-      "category_name": "여행 > 관광,명소 > 섬",
-      "distance": "",
-      "id": "18514310",
-      "phone": "",
-      "place_name": "제주도",
-      "place_url": "http://place.map.kakao.com/18514310",
-      "road_address_name": "",
-      "x": "126.54587355630036",
-      "y": "33.379777816446165"
-    },
-    {
-      "address_name": "제주특별자치도 서귀포시 대정읍 상모리",
-      "category_group_code": "AT4",
-      "category_group_name": "관광명소",
-      "category_name": "여행 > 관광,명소 > 도보여행 > 올레길 > 제주올레길",
-      "distance": "",
-      "id": "12753435",
-      "phone": "",
-      "place_name": "올레길 10코스(화순-모슬포 올레)",
-      "place_url": "http://place.map.kakao.com/12753435",
-      "road_address_name": "",
-      "x": "126.29320987840607",
-      "y": "33.216890444802004"
-    },
-    {
       "address_name": "경기 광주시 탄벌동 39-3",
       "category_group_code": "CE7",
       "category_group_name": "카페",
@@ -64,18 +36,32 @@
       "y": "37.416573892648"
     },
     {
-      "address_name": "서울 용산구 한강로1가 252-1",
-      "category_group_code": "FD6",
-      "category_group_name": "음식점",
-      "category_name": "음식점 > 한식 > 육류,고기 > 갈비",
+      "address_name": "서울 용산구 한강로3가 40-999",
+      "category_group_code": "CT1",
+      "category_group_name": "문화시설",
+      "category_name": "문화,예술 > 영화,영상 > 영화관 > CJCGV",
       "distance": "",
-      "id": "220597413",
-      "phone": "02-794-8592",
-      "place_name": "몽탄",
-      "place_url": "http://place.map.kakao.com/220597413",
-      "road_address_name": "서울 용산구 백범로99길 50",
-      "x": "126.972243524719",
-      "y": "37.5359961162675"
+      "id": "10813506",
+      "phone": "1544-1122",
+      "place_name": "CGV 용산아이파크몰",
+      "place_url": "http://place.map.kakao.com/10813506",
+      "road_address_name": "서울 용산구 한강대로23길 55",
+      "x": "126.963950815777",
+      "y": "37.5297517407141"
+    },
+    {
+      "address_name": "경기 광주시 경안동 23",
+      "category_group_code": "CE7",
+      "category_group_name": "카페",
+      "category_name": "음식점 > 카페 > 커피전문점 > 탐앤탐스",
+      "distance": "",
+      "id": "19781991",
+      "phone": "031-767-5100",
+      "place_name": "탐앤탐스 경기도광주점",
+      "place_url": "http://place.map.kakao.com/19781991",
+      "road_address_name": "경기 광주시 경안로 10",
+      "x": "127.25950125291716",
+      "y": "37.41015341268916"
     }
   ]
 }
