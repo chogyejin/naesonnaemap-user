@@ -1,5 +1,9 @@
 # 내손내맵
 
-## npm run dev
+## FE
 
-## json-server --watch data.json --port 4000
+`npm run dev`
+
+## BE
+
+`npm run json-server`
