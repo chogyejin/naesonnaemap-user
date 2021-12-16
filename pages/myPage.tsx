@@ -62,13 +62,14 @@ export default function MyPage({ myPlaces }: MyPageProps) {
   }, [mapDiv]);
 
   async function onDelete(placeId: string) {
-    const isDelete = confirm('삭제하시겠습니까?');
-    if (isDelete) {
+    const isDeleted = confirm('삭제하시겠습니까?');
+    if (isDeleted) {
       const result = await axios.delete(
         `http://localhost:4000/places/${placeId}`,
       );
       if (result.status === 200) {
         alert('삭제되었습니다');
+        window.location.reload();
       }
     }
   }
