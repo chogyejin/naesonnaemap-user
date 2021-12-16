@@ -1,46 +1,27 @@
 import { useRef, useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import KakaomapComponent from '../components/KaKaoMap';
 import SearchBar from '../components/KaKaoMap/SearchBar';
-import { IPlace, placesState } from '../recoil/states';
-
-interface ILocation {
-  myLat: number;
-  myLng: number;
-}
+import useLocation from '../hooks/useLocation';
+import {
+  ILocation,
+  IPlace,
+  locationState,
+  placesState,
+} from '../recoil/states';
 
 export default function Main() {
   const kakaoMap = useRef(null);
   const [keyword, setKeyword] = useState<string>('');
-  const [myLocation, setMyLocation] = useState<ILocation>({
-    myLat: 37.574515,
-    myLng: 126.97693,
-  });
+  const myLocation = useRecoilValue<ILocation>(locationState);
   const [places, setPlaces] = useRecoilState<IPlace[]>(placesState);
 
   function getKeyword(searchKeyword: string) {
     setKeyword(searchKeyword);
   }
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setMyLocation({
-            myLat: position.coords.latitude,
-            myLng: position.coords.longitude,
-          });
-        },
-        //지원 안 되면 광화문
-        () => {
-          setMyLocation({
-            myLat: 37.574515,
-            myLng: 126.97693,
-          });
-        },
-      );
-    }
-  }, []);
+  //현재 위치 가져오는 훅
+  useLocation();
 
   //처음 렌더링 되는 지도
   useEffect(() => {
@@ -84,7 +65,6 @@ export default function Main() {
 
     //맵 클릭하면 인포윈도우 닫기
     kakao.maps.event.addListener(map, 'click', function () {
-      console.log('맵클릭');
       infowindow.close();
     });
 
@@ -120,12 +100,10 @@ export default function Main() {
 
       // 마커에 클릭이벤트를 등록
       kakao.maps.event.addListener(marker, 'click', function () {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출
         infowindow.setContent(
           `<div style="padding:5px;font-size:12px;">
             <div style="display:flex;">
               <div>${place.place_name}</div>
-              <button onClick={alert("1231231");}>추가</button>
             </div>
             <div>
               <div>
@@ -152,16 +130,18 @@ export default function Main() {
     }
   }, [keyword]);
 
-  useEffect(() => {
-    if (places.length !== 0) {
-      console.log(places);
-    }
-  }, [places]);
+  // useEffect(() => {
+  //   if (places.length !== 0) {
+  //     console.log(places);
+  //   }
+  // }, [places]);
+
   return (
     <>
       <SearchBar getKeyword={getKeyword} />
       {keyword && <div>{keyword}</div>}
       <KakaomapComponent ref={kakaoMap} />
+      <div></div>
     </>
   );
 }

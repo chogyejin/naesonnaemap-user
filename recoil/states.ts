@@ -19,3 +19,16 @@ export const placesState = atom<IPlace[]>({
   key: 'placesState',
   default: [],
 });
+
+export interface ILocation {
+  myLat: number;
+  myLng: number;
+}
+
+export const locationState = atom<ILocation>({
+  key: 'locationState',
+  default: {
+    myLat: 37.574515,
+    myLng: 126.97693,
+  },
+});
