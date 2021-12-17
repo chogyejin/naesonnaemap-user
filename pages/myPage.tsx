@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Pagination from 'react-js-pagination';
 import { IPlace } from '../recoil/states';
 
 interface MyPageProps {
@@ -8,6 +9,11 @@ interface MyPageProps {
 
 export default function MyPage({ myPlaces }: MyPageProps) {
   const mapDiv = useRef<HTMLDivElement>(null);
+  const [page, setPage] = useState<number>(1);
+  const handlePageChange = (page: number) => {
+    setPage(page);
+    console.log(page);
+  };
 
   useEffect(() => {
     const { kakao } = window as any;
@@ -84,7 +90,7 @@ export default function MyPage({ myPlaces }: MyPageProps) {
           <div>
             <h1>내 찜 리스트</h1>
           </div>
-          {myPlaces.map((place, key) => (
+          {myPlaces.slice(page * 5 - 5, page * 5).map((place, key) => (
             <div
               key={key}
               style={{
@@ -101,6 +107,15 @@ export default function MyPage({ myPlaces }: MyPageProps) {
               </div>
             </div>
           ))}
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={5}
+            totalItemsCount={myPlaces.length}
+            pageRangeDisplayed={5}
+            prevPageText={'‹'}
+            nextPageText={'›'}
+            onChange={handlePageChange}
+          />
         </div>
       </div>
     </div>
