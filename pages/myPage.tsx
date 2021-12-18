@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import Pagination from 'react-js-pagination';
 import { IPlace } from '../recoil/states';
+import { PageDiv } from '../styles/style';
 
 interface MyPageProps {
   myPlaces: IPlace[];
@@ -107,17 +108,29 @@ export default function MyPage({ myPlaces }: MyPageProps) {
               </div>
             </div>
           ))}
-          <Pagination
-            activePage={page}
-            itemsCountPerPage={5}
-            totalItemsCount={myPlaces.length}
-            pageRangeDisplayed={5}
-            prevPageText={'‹'}
-            nextPageText={'›'}
-            onChange={handlePageChange}
-          />
+          <PageDiv>
+            <Pagination
+              activePage={page}
+              itemsCountPerPage={5}
+              totalItemsCount={myPlaces.length}
+              pageRangeDisplayed={5}
+              prevPageText={'‹'}
+              nextPageText={'›'}
+              onChange={handlePageChange}
+            />
+          </PageDiv>
         </div>
       </div>
+      <style jsx>
+        {`
+          .page {
+            font-size: 30px;
+          }
+          .page #pagination {
+            display: flex;
+          }
+        `}
+      </style>
     </div>
   );
 }

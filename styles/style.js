@@ -56,6 +56,18 @@ export const ContainerDiv = styled.div`
   ${ContainerStyles};
 `;
 
+export const pageStyles = css`
+  position: relative;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+`;
+
+export const PageDiv = styled.div`
+  ${pageStyles};
+`;
 // export const hoverStyles = css`
 //   &:hover {
 //     color: white;
