@@ -11,13 +11,11 @@ declare global {
 }
 
 const Map = () => {
-  const { kakao } = window;
-  const mapRef = useRef(null);
   const myLocation = useCurrentLoaction();
-  const isLoaded = useScript();
+  const mapRef = useRef(null);
 
   useEffect(() => {
-    if (!isLoaded) return;
+    const { kakao } = window;
 
     const coords = new kakao.maps.LatLng(myLocation.myLat, myLocation.myLng);
     const options = {
@@ -43,15 +41,7 @@ const Map = () => {
 
     // 인포윈도우를 마커위에 표시
     infowindow.open(map, marker);
-  }, [
-    isLoaded,
-    kakao.maps.InfoWindow,
-    kakao.maps.LatLng,
-    kakao.maps.Map,
-    kakao.maps.Marker,
-    myLocation.myLat,
-    myLocation.myLng,
-  ]);
+  }, [myLocation.myLat, myLocation.myLng]);
 
   return <Container ref={mapRef} />;
 };
