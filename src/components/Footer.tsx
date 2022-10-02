@@ -9,3 +9,5 @@ const Container = styled.footer`
   background-color: white;
   justify-content: center;
 `;
+
+export default Footer;
