@@ -1,15 +1,19 @@
-import { useRef, useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useState } from "react";
+import PlacesList from "../src/components/PlacesList";
 import Map from "../src/components/Map";
 import SearchBar from "../src/components/SearchBar";
-import useLocation from "../src/hooks/useCurrentLocation";
-import { locationState, Place, placesState } from "../src/recoil/states";
+import { Place } from "../src/recoil/states";
 
 const Main = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [places, setPlaces] = useState<Place[]>([]);
 
   const handleKeywordChange = (keyword: string) => {
     setSearchKeyword(keyword);
+  };
+
+  const handlePlacesChange = (places: Place[]) => {
+    setPlaces(places);
   };
 
   return (
@@ -18,7 +22,8 @@ const Main = () => {
         searchKeyword={searchKeyword}
         onSearchKeywordChange={handleKeywordChange}
       />
-      <Map searchKeyword={searchKeyword} />
+      <PlacesList places={places} />
+      <Map searchKeyword={searchKeyword} onPlacesChange={handlePlacesChange} />
     </>
   );
 };
