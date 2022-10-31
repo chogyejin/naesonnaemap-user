@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Navbar from "./Navbar";
+import Header from "./Header";
 import Footer from "./Footer";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const Layout = ({ children }: Props) => {
   return (
     <div>
-      <Navbar />
+      <Header />
       <Main>{children}</Main>
       <Footer />
     </div>

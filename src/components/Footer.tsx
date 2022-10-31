@@ -5,9 +5,11 @@ const Footer = () => {
 };
 
 const Container = styled.footer`
-  display: flex;
-  background-color: white;
-  justify-content: center;
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  background-color: #aaa;
 `;
 
 export default Footer;
