@@ -27,18 +27,22 @@ const SearchBar = ({ searchKeyword, onSearchKeywordChange }: Props) => {
 
   return (
     <Container>
-      <Form>
-        <Input
-          type="text"
-          placeholder="장소 입력하세요"
-          value={inputText}
-          onChange={handleTextChange}
-        />
-        <Button type="submit" onClick={handleSearchClick}>
-          검색
-        </Button>
-      </Form>
-      <Keyword>{searchKeyword}</Keyword>
+      <FormWrapper>
+        <Form>
+          <Input
+            type="text"
+            placeholder="장소 입력하세요"
+            value={inputText}
+            onChange={handleTextChange}
+          />
+          <Button type="submit" onClick={handleSearchClick}>
+            검색
+          </Button>
+        </Form>
+      </FormWrapper>
+      <Keyword>
+        <span>{searchKeyword}</span>
+      </Keyword>
     </Container>
   );
 };
@@ -47,7 +51,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 40px 0 20px 0;
+`;
+
+const FormWrapper = styled.div`
+  height: 40px;
 `;
 
 const Form = styled.form``;
@@ -73,6 +81,15 @@ const Button = styled.button`
   border-radius: 10px;
 `;
 
-const Keyword = styled.div``;
+const Keyword = styled.div`
+  display: flex;
+  align-items: center;
+  height: 32px;
+
+  & > span {
+    font-size: 24px;
+    font-weight: 700;
+  }
+`;
 
 export default SearchBar;
