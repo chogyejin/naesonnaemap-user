@@ -51,7 +51,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 0 20px 0;
+  margin-bottom: 20px;
 `;
 
 const FormWrapper = styled.div`
@@ -66,10 +66,11 @@ const Input = styled.input`
   padding: 5px;
   margin-right: 5px;
   font-size: 12px;
-  border: 1px solid gray;
+  border: 1px solid #aaa;
   border-radius: 10px;
+
   &:focus {
-    box-shadow: 0 0 5px black;
+    border: 1px solid #000;
   }
 `;
 

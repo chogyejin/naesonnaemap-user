@@ -16,6 +16,8 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-const Main = styled.main``;
+const Main = styled.main`
+  margin-top: 40px;
+`;
 
 export default Layout;

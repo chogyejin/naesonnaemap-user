@@ -9,7 +9,8 @@ const Container = styled.footer`
   height: 40px;
   position: fixed;
   bottom: 0;
-  background-color: #aaa;
+  background-color: #fff;
+  box-shadow: 0 -2px 4px -1px rgba(0, 0, 0, 0.25);
 `;
 
 export default Footer;

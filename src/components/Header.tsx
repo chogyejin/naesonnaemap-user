@@ -9,7 +9,8 @@ const Container = styled.header`
   position: fixed;
   top: 0;
   height: 40px;
-  background-color: #aaa;
+  background-color: #fff;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
 `;
 
 export default Header;

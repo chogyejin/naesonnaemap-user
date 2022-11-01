@@ -4,7 +4,7 @@ import Head from "next/head";
 import { RecoilRoot } from "recoil";
 import { globalStyles } from "../src/styles/globalStyles";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
@@ -20,6 +20,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Layout>
     </>
   );
-}
+};
 
 export default MyApp;
