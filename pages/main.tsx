@@ -35,10 +35,12 @@ const Main = () => {
           isShow={isShow}
           onCloseClick={handleCloseClick}
         />
-        <Map
-          searchKeyword={searchKeyword}
-          onPlacesChange={handlePlacesChange}
-        />
+        <MapWrapper>
+          <Map
+            searchKeyword={searchKeyword}
+            onPlacesChange={handlePlacesChange}
+          />
+        </MapWrapper>
       </MapConatiner>
     </>
   );
@@ -46,6 +48,13 @@ const Main = () => {
 
 const MapConatiner = styled.div`
   position: relative;
+`;
+
+const MapWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
 `;
 
 export default Main;

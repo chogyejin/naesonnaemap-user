@@ -14,9 +14,15 @@ interface Props {
   searchKeyword?: string;
   onPlacesChange?: (place: Place[]) => void;
   myPlaces?: Place[];
+  width?: number;
 }
 
-const Map = ({ searchKeyword, onPlacesChange, myPlaces }: Props) => {
+const Map = ({
+  searchKeyword,
+  onPlacesChange,
+  myPlaces,
+  width = 80,
+}: Props) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const { myLat, myLng } = useCurrentLoaction();
   const { kakao } = window;
@@ -42,11 +48,11 @@ const Map = ({ searchKeyword, onPlacesChange, myPlaces }: Props) => {
           position: new kakao.maps.LatLng(place.y, place.x),
         });
 
-        kakao.maps.event.addListener(marker, "click", function () {
+        kakao.maps.event.addListener(marker, "click", () => {
           // 마커를 클릭하면 장소명이 인포윈도우에 표출
           infowindow.setContent(
             `<div style="padding:5px;font-size:12px;">
-            <div style="display:flex;">
+            <div>
               <div>${place.place_name}</div>
             </div>
             <div>
@@ -151,7 +157,7 @@ const Map = ({ searchKeyword, onPlacesChange, myPlaces }: Props) => {
       // 마커에 클릭이벤트를 등록
       kakao.maps.event.addListener(marker, "click", function () {
         infowindow.setContent(
-          `<div style="padding:5px;font-size:12px;">
+          `<div style="height:auto;padding:5px;font-size:12px;">
               <div style="display:flex;">
                 <div>${place.place_name}</div>
               </div>
@@ -176,21 +182,12 @@ const Map = ({ searchKeyword, onPlacesChange, myPlaces }: Props) => {
     ps.keywordSearch(searchKeyword, placesSearchCB);
   }, [searchKeyword]);
 
-  return (
-    <Container>
-      <MapElement ref={mapRef} />
-    </Container>
-  );
+  return <MapElement ref={mapRef} width={width} />;
 };
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  border-radius: 20px;
-`;
-
-const MapElement = styled.div`
-  width: 80%;
+const MapElement = styled.div<{ width: number }>`
+  min-width: 320px;
+  width: ${({ width }) => `${width}%`};
   height: 500px;
   border-radius: 20px;
 `;
