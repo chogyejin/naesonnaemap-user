@@ -45,5 +45,8 @@ naesonnaemap-user
       └─ globalStyles.js
 ```
 ## 구현 사항
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/81501723/200850835-ae3f9574-fae4-4238-9fcf-92bd3bbeb729.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/81501723/200851264-f951644f-0b0c-4a12-8b50-08775db3e545.gif)
+
 
 - [노션](https://www.notion.so/0ae498f43be743629339d64b026dc997)
